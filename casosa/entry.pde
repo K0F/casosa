@@ -90,11 +90,12 @@ class Entry{
 
     if(over){
 
+
       textAlign(RIGHT);
-      text((int)end,pos.x+w-4,height/2-4-12);
+      text((int)start+"\n"+(int)(start-parent.narozeni)+" years",pos.x-4,height/2-8-24);
 
       textAlign(LEFT);
-      text((int)start,pos.x+4,height/2-4-12);
+      text((int)end+"\n"+(int)(end-parent.narozeni)+" years",pos.x+w+4,height/2-8-24);
 
       stroke(0,100);
       line(pos.x,0,pos.x,height);

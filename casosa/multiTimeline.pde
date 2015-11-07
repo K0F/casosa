@@ -32,7 +32,7 @@ class MultiTimeline{
     strokeWeight(2);
     line(0,height/2,width,height/2);
 
-    for(float i = min; i < max;i+=5){
+    for(float i = min; i < max;i+=10){
       float time = map(i,min,max,b,width-b);
       line(time,height/2-10,time,height/2+10);
       fill(0,127);
