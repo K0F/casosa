@@ -11,6 +11,9 @@ class Timeline{
   float min,max;
   int X,YY;
 
+
+  float b;
+
   String jmeno;
   int vek;
   int narozeni;
@@ -23,8 +26,10 @@ class Timeline{
     parent = _parent;
     filename = _filename;
 
+    b = parent.b;
+
     YY=parent.Y;
-    parent.Y+=24;
+    parent.Y+=12;
 
     X=parent.X;
     parent.X+=150;

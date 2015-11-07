@@ -5,7 +5,7 @@ class Entry{
   String name;
   PVector pos;
   Timeline parent;
-  float b = 100;
+  float b;
   float w;
   boolean over;
 
@@ -15,6 +15,8 @@ class Entry{
     typ = _typ;
     start = parseFloat(_st);
     end = parseFloat(_en);
+
+    b = parent.b;
 
     parent.parent.max = max(end,parent.parent.max);
     parent.parent.min = min(start,parent.parent.min);
@@ -29,8 +31,8 @@ class Entry{
     w = ex-sx;
 
     pos = new PVector(sx,height/2+parent.Y);
-    parent.Y+=12;
-    parent.Y=parent.Y%height;
+    //parent.Y=parent.Y%(height-200);
+    parent.Y+=6;
   }
 
   void move(){

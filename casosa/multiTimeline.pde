@@ -7,10 +7,13 @@ class MultiTimeline{
   int Y;
   float min,max;
 
+  float b;
+
   MultiTimeline(String[] _filenames){
     filenames = _filenames;
     timelines = new ArrayList();
 
+    b = 100;
 
     min = 1000000;
     max = 0;
@@ -30,7 +33,7 @@ class MultiTimeline{
     line(0,height/2,width,height/2);
 
     for(float i = min; i < max;i+=5){
-      float time = map(i,min,max,100,width-100);
+      float time = map(i,min,max,b,width-b);
       line(time,height/2-10,time,height/2+10);
       fill(0,127);
       text((int)i,time,height/2-4);
@@ -52,12 +55,6 @@ class MultiTimeline{
     }
 
   }
-
-  void scale(){
-
-  }
-
-
 
 
 }
