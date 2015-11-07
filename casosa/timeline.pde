@@ -1,7 +1,7 @@
 
 class Timeline{
 
- 
+
   MultiTimeline parent;
   color c;
   float Y = -height/2+100;
@@ -17,7 +17,7 @@ class Timeline{
   int umrti;
 
   boolean over;
-  boolean plot;
+  boolean plot = true;
 
   Timeline(MultiTimeline _parent,String _filename){
     parent = _parent;
@@ -29,7 +29,7 @@ class Timeline{
     X=parent.X;
     parent.X+=150;
     c = color(X/150.0/4.0*255,127,127);
-    
+
     jmeno = splitTokens(filename,"-")[0];
     narozeni = parseInt(splitTokens(splitTokens(filename,"-")[1],"_")[0]);
     umrti = parseInt(splitTokens(splitTokens(filename,"-")[1],"_")[1]);
@@ -41,29 +41,26 @@ class Timeline{
     parser = new Parser(this,filename);
 
     if(DEBUG)
-    println(jmeno+" "+narozeni+" "+umrti+" "+vek);
+      println(jmeno+" "+narozeni+" "+umrti+" "+vek);
   }
 
   boolean over(){
-    
+
     if(mouseX>X&&mouseX<X+150&&mouseY>0&&mouseY<50)
-    return true;
+      return true;
     else
-    return false;
+      return false;
 
   }
 
 
   void draw(){
-   
+
     over = over();
 
-    if(over&&mousePressed)
-    plot=!plot;
- 
     pushMatrix();
     translate(X,0);
-    fill(c);
+    fill(c,plot?255:127);
     rect(0,0,150,50);
     fill(0);
     text(jmeno,10,12);
@@ -76,14 +73,18 @@ class Timeline{
     float life = died-born;
 
     noStroke();
-    fill(c,64);
+    fill(c,plot?255:127);
     rect(born,YY,life,24);
+    fill(0);
+    text(jmeno+" "+narozeni+"-"+umrti,born+4,YY+12);
 
-      if(plot)
+}
+
+void drawEntries(){
+    if(plot)
       for(int i = 0; i < entries.size();i++){
-      Entry tmp = (Entry)entries.get(i);
-      tmp.draw();
-    }
-
+        Entry tmp = (Entry)entries.get(i);
+        tmp.draw();
+      }
   }
 }

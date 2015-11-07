@@ -28,19 +28,27 @@ class MultiTimeline{
     stroke(0,100);
     strokeWeight(2);
     line(0,height/2,width,height/2);
-    
+
     for(float i = min; i < max;i+=5){
       float time = map(i,min,max,100,width-100);
       line(time,height/2-10,time,height/2+10);
       fill(0,127);
       text((int)i,time,height/2-4);
     }
-    
+
     popStyle();
 
-for(int i = 0; i < timelines.size();i++){
+    for(int i = 0; i < timelines.size();i++){
       Timeline tl = (Timeline)timelines.get(i);
       tl.draw();
+    }
+  }
+
+
+  void drawEntries(){
+    for(int i = 0; i < timelines.size();i++){
+      Timeline tl = (Timeline)timelines.get(i);
+      tl.drawEntries();
     }
 
   }

@@ -20,7 +20,7 @@ class Entry{
     parent.parent.min = min(start,parent.parent.min);
 
     if(DEBUG)
-    println("creating entry: " +name);
+      println("creating entry: " +name);
   }
 
   void scale(){
@@ -34,11 +34,11 @@ class Entry{
   }
 
   void move(){
-   Entry overs[] = getOverlaps();  
-   for(int i = 0 ; i < overs.length;i++){
-    if(abs(pos.y-overs[i].pos.y)<24 && parent.entries.indexOf(overs[i])>parent.entries.indexOf(this))
-     overs[i].pos.y+=0.1;
-   }
+    Entry overs[] = getOverlaps();  
+    for(int i = 0 ; i < overs.length;i++){
+      if(abs(pos.y-overs[i].pos.y)<24 && parent.entries.indexOf(overs[i])>parent.entries.indexOf(this))
+        overs[i].pos.y+=0.1;
+    }
   }
 
   Entry[] getOverlaps(){
@@ -48,25 +48,25 @@ class Entry{
     for(int i = 0 ; i < parent.entries.size();i++){
       Entry en = (Entry)parent.entries.get(i);
       boolean o = false;
-      
+
       if(pos.x+w>=en.pos.x&&pos.x+w<=en.pos.x+en.w)
-      o = true;
+        o = true;
 
       if(pos.x>=en.pos.x&&pos.x<=en.pos.x+en.w)
-      o = true;
+        o = true;
 
       if(i==parent.entries.indexOf(this))
-      o = false;
+        o = false;
 
       if(o)
-      over.add(en);
+        over.add(en);
     }
 
     tmp = new Entry[over.size()];
     for(int i = 0; i < tmp.length;i++)
     {
-    Entry e = (Entry)parent.entries.get(i);
-    tmp[i] = e;
+      Entry e = (Entry)parent.entries.get(i);
+      tmp[i] = e;
     }
 
     return tmp;
@@ -86,21 +86,28 @@ class Entry{
     fill(0);
     text(name,pos.x+4,pos.y);
 
-    stroke(0,100);
-    line(pos.x,pos.y,pos.x,height);
+    if(over){
 
+      textAlign(RIGHT);
+      text((int)end,pos.x+w-4,height/2-4-12);
 
-    if(over)
-    text((int)start+" ---> "+(int)end,pos.x+4,height/2-4);
+      textAlign(LEFT);
+      text((int)start,pos.x+4,height/2-4-12);
+
+      stroke(0,100);
+      line(pos.x,0,pos.x,height);
+      line(pos.x+w,0,pos.x+w,height);
+
+    }
   }
 
   boolean over(){
     if(mouseX>pos.x&&mouseX<pos.x+w&&mouseY>pos.y-12&&mouseY<pos.y)
-    return true;
+      return true;
     else
-    return false;
+      return false;
   }
-  
+
   ////////////////////////////////////
 
 }
