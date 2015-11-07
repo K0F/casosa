@@ -37,11 +37,25 @@ class Entry{
 
     b = parent.b;
 
-    parent.parent.max = max(end,parent.parent.max);
-    parent.parent.min = min(start,parent.parent.min);
+    update();
 
     if(DEBUG)
       println("creating entry: " +name);
+  }
+
+  void update(){
+    parent.parent.max = max(end,parent.parent.max);
+    parent.parent.min = min(start,parent.parent.min);
+  }
+
+
+  void rescale(){
+    float sx = map(start,parent.parent.min,parent.parent.max,b,width-b);
+    float ex = map(end,parent.parent.min,parent.parent.max,b,width-b);
+    w = ex-sx;
+
+    pos = new PVector(sx,height/2+parent.Y);
+ 
   }
 
   void scale(){

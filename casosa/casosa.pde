@@ -57,3 +57,16 @@ void mouseReleased(){
   }
 
 }
+
+void mouseDragged(){
+  architekti.min += pmouseX-mouseX;
+  architekti.max += pmouseX-mouseX;
+
+  for(int i =0;i<architekti.timelines.size();i++){
+    Timeline tmp = (Timeline)architekti.timelines.get(i);
+  
+  tmp.min += pmouseX-mouseX;
+  tmp.max += pmouseX-mouseX;
+
+}
+}

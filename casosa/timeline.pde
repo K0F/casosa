@@ -106,9 +106,12 @@ class Timeline{
 
 void drawEntries(){
     if(plot)
+      Y=-height/2+100;
       for(int i = 0; i < entries.size();i++){
         Entry tmp = (Entry)entries.get(i);
+        tmp.rescale();
         tmp.draw();
+        Y+=8;
       }
   }
 }
